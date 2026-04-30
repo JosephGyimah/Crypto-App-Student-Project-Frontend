@@ -11,7 +11,7 @@
   status = 200
 
 [context.production]
-  environment = { VITE_BACKEND_URL = "https://your-backend.onrender.com" }
+  environment = { VITE_BACKEND_URL = "https://crypto-app-student-project-backend-1.onrender.com" }
 
 [context.deploy-preview]
   environment = { VITE_BACKEND_URL = "http://localhost:5000" }
