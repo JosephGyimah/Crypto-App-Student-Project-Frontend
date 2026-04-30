@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  environment = { VITE_BACKEND_URL = "https://your-backend.onrender.com" }
+
+[context.deploy-preview]
+  environment = { VITE_BACKEND_URL = "http://localhost:5000" }
+
+[context.branch-deploy]
+  environment = { VITE_BACKEND_URL = "http://localhost:5000" }

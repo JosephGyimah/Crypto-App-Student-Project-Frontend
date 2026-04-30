@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: 'Inter', 'Segoe UI', sans-serif;
+	--font-serif: 'Inter', 'Segoe UI', sans-serif;
+}
+
+@layer base {
+	html,
+	body {
+		@apply font-sans text-base font-normal leading-normal;
+	}
+
+	h1,
+	h2 {
+		@apply font-bold leading-[1.08] tracking-[-0.02em];
+	}
+
+	h3,
+	h4 {
+		@apply font-semibold leading-[1.2] tracking-[-0.01em];
+	}
+
+	p {
+		@apply font-normal leading-relaxed;
+	}
+
+	button {
+		@apply font-medium tracking-[0.005em];
+	}
+
+	input,
+	select,
+	textarea {
+		@apply font-normal;
+	}
+}
