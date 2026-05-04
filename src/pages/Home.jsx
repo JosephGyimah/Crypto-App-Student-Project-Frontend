@@ -22,6 +22,7 @@ function Home() {
     let mounted = true
     // Ensure the Top assets section always shows Bitcoin and Ethereum
     crypto.all().then((res) => {
+      console.log('[Home] crypto.all() response:', res)
       if (!mounted || !res?.data) return
       const symbols = ['BTC', 'ETH']
       const ordered = symbols
@@ -29,7 +30,7 @@ function Home() {
         .filter(Boolean)
       // Fallback to first two if BTC/ETH not found
       setTop(ordered.length ? ordered : res.data.slice(0, 2))
-    }).catch(() => {})
+    }).catch((err) => console.error('[Home] crypto.all() error:', err))
     return () => (mounted = false)
   }, [])
 

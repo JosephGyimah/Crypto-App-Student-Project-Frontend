@@ -48,8 +48,9 @@ function Explore() {
   useEffect(() => {
     let mounted = true
     cryptoApi.all().then((res) => {
+      console.log('[Explore] cryptoApi.all() response:', res)
       if (mounted && res?.data) setAssets(res.data)
-    }).catch(() => {})
+    }).catch((err) => console.error('[Explore] cryptoApi.all() error:', err))
     return () => (mounted = false)
   }, [])
 
