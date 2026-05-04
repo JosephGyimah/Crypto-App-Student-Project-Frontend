@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'
+const BASE = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'
 
 export async function apiFetch(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {

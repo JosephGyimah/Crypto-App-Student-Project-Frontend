@@ -1,6 +1,9 @@
 {
   "github.copilot.enable": {
-    "*": false
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
   },
   "github.copilot.editor.enableAutoCompletions": false,
   "github.copilot.chat.enabled": false
