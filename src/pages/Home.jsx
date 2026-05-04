@@ -23,13 +23,14 @@ function Home() {
     // Ensure the Top assets section always shows Bitcoin and Ethereum
     crypto.all().then((res) => {
       console.log('[Home] crypto.all() response:', res)
-      if (!mounted || !res?.data) return
+      if (!mounted) return
+      const list = res?.data ?? (Array.isArray(res) ? res : [])
+      if (!list.length) return
       const symbols = ['BTC', 'ETH']
       const ordered = symbols
-        .map((s) => res.data.find((c) => c.symbol?.toUpperCase() === s))
+        .map((s) => list.find((c) => c.symbol?.toUpperCase() === s))
         .filter(Boolean)
-      // Fallback to first two if BTC/ETH not found
-      setTop(ordered.length ? ordered : res.data.slice(0, 2))
+      setTop(ordered.length ? ordered : list.slice(0, 2))
     }).catch((err) => console.error('[Home] crypto.all() error:', err))
     return () => (mounted = false)
   }, [])
@@ -38,8 +39,8 @@ function Home() {
     let mounted = true
     const check = async () => {
       try {
-        await auth.profile()
-        if (mounted) setIsAuthenticated(true)
+        const result = await auth.profile()
+        if (mounted) setIsAuthenticated(result != null)
       } catch {
         if (mounted) setIsAuthenticated(false)
       } finally {

@@ -30,9 +30,10 @@ function Profile() {
   const handleLogout = async () => {
     try {
       await auth.logout()
-      navigate('/signin')
     } catch (err) {
-      setError('Logout failed: ' + err.message)
+      console.error('Logout failed:', err)
+    } finally {
+      navigate('/signin')
     }
   }
 

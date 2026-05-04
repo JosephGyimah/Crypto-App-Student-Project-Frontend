@@ -11,8 +11,8 @@ function Navbar() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await auth.profile()
-        setIsAuthenticated(true)
+        const result = await auth.profile()
+        setIsAuthenticated(result != null)
       } catch {
         setIsAuthenticated(false)
       } finally {
@@ -26,10 +26,11 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await auth.logout()
-      setIsAuthenticated(false)
-      navigate('/signin')
     } catch (err) {
       console.error('Logout failed:', err)
+    } finally {
+      setIsAuthenticated(false)
+      navigate('/signin')
     }
   }
 

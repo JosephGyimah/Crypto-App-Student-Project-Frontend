@@ -49,7 +49,9 @@ function Explore() {
     let mounted = true
     cryptoApi.all().then((res) => {
       console.log('[Explore] cryptoApi.all() response:', res)
-      if (mounted && res?.data) setAssets(res.data)
+      if (!mounted) return
+      const list = res?.data ?? (Array.isArray(res) ? res : [])
+      setAssets(list)
     }).catch((err) => console.error('[Explore] cryptoApi.all() error:', err))
     return () => (mounted = false)
   }, [])
